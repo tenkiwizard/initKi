@@ -1,14 +1,16 @@
 <?php
-/**
- * The development database settings. These get merged with the global settings.
- */
 
 return array(
 	'default' => array(
+		//'type' => 'mysqli',
+		'type' => 'pdo',
 		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=fuel_dev',
-			'username'   => 'root',
-			'password'   => 'root',
+			//'hostname' => 'localhost', // When ('type' => 'mysqli')
+			//'database' => 'initki', // similar to above
+			'dsn' => 'mysql:host=localhost;dbname=initki', // When ('type' => 'pdo')
+			'username' => 'initki',
+			'password'	=> 'initki',
+			),
+		'profiling' => true,
 		),
-	),
 );
