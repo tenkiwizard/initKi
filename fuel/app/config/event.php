@@ -6,6 +6,7 @@ return array(
 		{
 			// FuelPHP 初期化された後の処理
 			Initki\Exceptions::register();
+			Initki\Lang::get();
 			Initki\Lang::detect_order();
 		},
 		'request_created' => function()
