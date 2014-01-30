@@ -13,9 +13,9 @@ namespace Zenkins;
 
 class Talker_Redmine_Changeset
 {
+	private static $model = 'Zenkins\Model_Redmine_Changeset';
 	private static $things = array();
-
-	private static $api_key = '';
+	private static $api_key = null;
 
 	public static function forge($api_key = null)
 	{
@@ -25,7 +25,6 @@ class Talker_Redmine_Changeset
 	public function __construct($api_key = null)
 	{
 		$api_key and static::$api_key = $api_key;
-		// Get from config file
 	}
 
 	public function __toString()
@@ -36,10 +35,10 @@ class Talker_Redmine_Changeset
 	public function talk(array $things)
 	{
 		static::$things = $things;
-		$params = array_merge(array('key' => static::$api_key), static::$things);
-		$api_name = 'fetch_changesets';
-		\Initki\Api::base_url('https://red.il-tools.interlink.ne.jp/sys/');
-		$results = \Initki\Api::$api_name($params)->body;
-		return $results;
+		$model = static::$model;
+		return $model::forge()
+			->api_key(static::$api_key)
+			->build_query(static::$things)
+			->get();
 	}
 }
