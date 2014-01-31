@@ -101,19 +101,7 @@ abstract class Model_Api extends Model
 
 	public static function _api($name, $method = 'get')
 	{
-		static::log($method, $name, $params, $result);
 		\Initki\Api::method($method);
 		$result = \Initki\Api::$name(static::$query)->body;
-	}
-
-	/**
-	 * @todo 動作未検証につき、検証すべし！
-	 */
-	protected static function log($method, $name, array $params, $result)
-	{
-		if ( ! \Config::get('Qeury.api_debug')) return; // ここ多分取得できないのでは？
-		\Log::debug('API_REQUEST: '.strtoupper($method).' '.
-					\Initki\Api::base_url().$name.'?'.http_build_query($params));
-		\Log::debug('API_RESULT:'.$result);
 	}
 }

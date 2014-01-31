@@ -34,10 +34,14 @@ class Api
 		return static::$base_url;
 	}
 
-	public static function url($call)
+	public static function url($call, $replace_to_slash = '')
 	{
 		$url = static::$base_url;
-		$url .= str_replace('_', '/', $call);
+		if ($replace_to_slash)
+		{
+			$call = str_replace($replace_to_slash, '/', $call);
+		}
+		$url .= $call;
 		return $url;
 	}
 

@@ -65,6 +65,11 @@ class Http
 
 	protected function execute()
 	{
+		// TODO 危険！設定ファイルなどによる切り替えが必要？
+		static::$request->set_option(CURLOPT_SSL_VERIFYPEER, false);
+
+		// TODO リクエストURI・パラメータのデバッグログ出力
+
 		return static::$request->execute()->response();
 	}
 
