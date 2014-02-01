@@ -66,11 +66,16 @@ class Http
 	protected function execute()
 	{
 		// TODO 危険！設定ファイルなどによる切り替えが必要？
-		static::$request->set_option(CURLOPT_SSL_VERIFYPEER, false);
+		static::$request->set_options(array(
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST=> false,
+			));
 
-		// TODO リクエストURI・パラメータのデバッグログ出力
-
-		return static::$request->execute()->response();
+		$response = static::$request->execute()->response();
+		\Log::debug(
+			\Format::forge(static::$request->response_info())->to_json(),
+			__METHOD__);
+		return $response;
 	}
 
 	public static function response()

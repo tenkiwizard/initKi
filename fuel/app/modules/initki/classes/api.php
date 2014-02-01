@@ -26,7 +26,7 @@ class Api
 
 		if (empty(static::$base_url))
 		{
-			\Config::load('resource', true);
+			\Config::load('initki::resource', 'resource');
 			$base_url = \Config::get('resource.api.base_url');
 			static::$base_url = $base_url;
 		}

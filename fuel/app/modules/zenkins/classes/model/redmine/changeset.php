@@ -1,6 +1,6 @@
 <?php
 /**
- * Redmine talker
+ * Redmine changeset model
  *
  * @package app
  * @subpackage zenkins
