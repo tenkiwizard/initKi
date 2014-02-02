@@ -16,6 +16,7 @@ class Api
 	protected static $base_url = '';
 	protected static $method = 'get';
 	protected static $auto_format = true;
+	protected static $additional_headers = array();
 
 	public static function base_url($base_url = null)
 	{
@@ -65,6 +66,8 @@ class Api
 	protected static function http($url, array $params = null)
 	{
 		return Http::forge($url, static::$method, static::$auto_format)
-			->request($params)->response();
+			->additional_headers(static::$additional_headers)
+			->request($params)
+			->response();
 	}
 }

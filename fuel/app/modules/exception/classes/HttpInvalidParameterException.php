@@ -12,15 +12,16 @@ class HttpInvalidParameterException extends HttpException
 {
 	public function response()
 	{
-		$data['message'] = 'Invalid Parameter'.static::additional_message();
+		$data['message'] = 'Invalid Parameter'.$this->additional_message();
 		$response = Response::forge(View::forge('errors/exception', $data), 400);
 		return $response;
 	}
 
-	private static function additional_message()
+	private function additional_message()
 	{
-		$additional = implode(', ', array_keys(
-			Validation::instance()->error())); // experimental!
+		$invalids = array_keys(Validation::instance()->error()); // experimental!
+		$invalids[] = $this->getMessage();
+		$additional = implode(',', $invalids);
 		return ' ('.$additional.')';
 	}
 }

@@ -18,6 +18,8 @@ class Http
 	protected static $request = null;
 	protected static $response = null;
 
+	protected static $additional_headers = array();
+
 	public static function forge($url, $method = 'get', $auto_format = true)
 	{
 		return new static($url, $method, $auto_format);
@@ -67,6 +69,12 @@ class Http
 		return $this;
 	}
 
+	public function additional_headers(array $additional_headers)
+	{
+		static::$additional_headers = $additional_headers;
+		return $this;
+	}
+
 	protected function execute()
 	{
 		// TODO 危険！設定ファイルなどによる切り替えが必要？
@@ -74,6 +82,11 @@ class Http
 			CURLOPT_SSL_VERIFYPEER => false,
 			CURLOPT_SSL_VERIFYHOST=> false,
 			));
+
+		foreach (static::$additional_headers as $header => $content)
+		{
+			static::$request->set_header($header, $content);
+		}
 
 		$response = static::$request->execute()->response();
 		\Log::debug(
