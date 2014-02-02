@@ -51,6 +51,10 @@ class Http
 			static::$request->set_params($params);
 		}
 
+		\Log::debug(
+			'CURL_PARAMETERS: '.\Format::forge($params)->to_json(),
+			__METHOD__);
+
 		try
 		{
 			static::$response = $this->execute();
@@ -66,11 +70,17 @@ class Http
 	protected function execute()
 	{
 		// TODO 危険！設定ファイルなどによる切り替えが必要？
-		static::$request->set_option(CURLOPT_SSL_VERIFYPEER, false);
+		static::$request->set_options(array(
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST=> false,
+			));
 
-		// TODO リクエストURI・パラメータのデバッグログ出力
-
-		return static::$request->execute()->response();
+		$response = static::$request->execute()->response();
+		\Log::debug(
+			'CURL_GETINFO: '.
+			\Format::forge(static::$request->response_info())->to_json(),
+			__METHOD__);
+		return $response;
 	}
 
 	public static function response()

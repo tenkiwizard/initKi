@@ -74,14 +74,12 @@ abstract class Model_Api extends Model
 		return $results;
 	}
 
-	/**
-	 * @todo 動作未検証につき、検証すべし！
-	 */
 	protected static function api($name, $method = 'get')
 	{
 		static $configs = null;
 		if (is_null($configs))
 		{
+			// TODO Verify behavior
 			\Config::load('Query::config', 'query');
 			$configs['api_cache'] = \Config::get('query.api_cache');
 			$configs['api_cache_lifetime'] = \Config::get('query.api_cache_lifetime');
@@ -96,12 +94,7 @@ abstract class Model_Api extends Model
 				$configs['api_cache_lifetime']);
 		}
 
-		return static::_api($name, $method);
-	}
-
-	public static function _api($name, $method = 'get')
-	{
 		\Initki\Api::method($method);
-		$result = \Initki\Api::$name(static::$query)->body;
+		return \Initki\Api::$name(static::$query)->body;
 	}
 }

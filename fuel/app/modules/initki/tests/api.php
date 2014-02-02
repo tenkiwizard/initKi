@@ -10,7 +10,7 @@ class Test_Api extends \TestCase
 {
 	public function test_base_url()
 	{
-		\Config::load('resource', true);
+		\Config::load('initki::resource', 'resource');
 		$expected = \Config::get('resource.api.base_url');
 		$actual = Api::base_url();
 		$this->assertSame($expected, $actual);

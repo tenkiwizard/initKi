@@ -1,6 +1,6 @@
 <?php
 /**
- * Redmine talker
+ * Gitlab model
  *
  * @package app
  * @subpackage zenkins
@@ -11,7 +11,8 @@
 
 namespace Zenkins;
 
-class Talker_Redmine_Changeset extends Talker
+class Model_Gitlab extends Model
 {
-	protected static $model = 'Zenkins\Model_Redmine_Changeset';
+	const CONFIG_SECTION = 'gitlab';
+	const CONFIG_API_KEY = 'private_token';
 }

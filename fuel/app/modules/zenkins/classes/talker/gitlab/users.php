@@ -1,6 +1,6 @@
 <?php
 /**
- * Redmine talker
+ * Gitlab talker about users
  *
  * @package app
  * @subpackage zenkins
@@ -11,7 +11,7 @@
 
 namespace Zenkins;
 
-class Talker_Redmine_Changeset extends Talker
+class Talker_Gitlab_Users extends Talker
 {
-	protected static $model = 'Zenkins\Model_Redmine_Changeset';
+	protected static $model = 'Zenkins\Model_Gitlab_Users';
 }
