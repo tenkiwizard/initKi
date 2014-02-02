@@ -17,6 +17,8 @@ abstract class Model_Api extends Model
 	protected static $base_url = '';
 	protected static $query = array();
 
+	protected static $additional_headers = array();
+
 	public static function forge()
 	{
 		return new static();
@@ -95,6 +97,7 @@ abstract class Model_Api extends Model
 		}
 
 		\Initki\Api::method($method);
+		\Initki\Api::additional_headers(static::$additional_headers);
 		return \Initki\Api::$name(static::$query)->body;
 	}
 }

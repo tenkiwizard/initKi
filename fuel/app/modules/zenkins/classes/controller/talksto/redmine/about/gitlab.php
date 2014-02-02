@@ -11,29 +11,12 @@
 
 namespace Zenkins;
 
-class Controller_Talksto_Redmine_About_Gitlab extends \Initki\Controller_Restful
+class Controller_Talksto_Redmine_About_Gitlab extends Controller
 {
-	public function get_index()
-	{
-		//
-	}
-
 	public function post_push($project_id = null, $api_key = null)
 	{
-		if ($project_id === null)
-		{
-			$project_id = \Input::get('project_id');
-		}
-
-		if ($api_key === null)
-		{
-			$api_key = \Input::get('api_key');
-		}
-
-		if ( ! $project_id)
-		{
-			throw new \HttpNotFoundException();
-		}
+		$project_id = $this->override('project_id', $project_id, 'required');
+		$api_key = $this->override('api_key', $api_key);
 
 		Talker_Redmine_Changeset::forge($api_key)
 			->talk(array('id' => $project_id));
