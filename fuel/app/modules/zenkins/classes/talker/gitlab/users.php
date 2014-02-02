@@ -11,7 +11,7 @@
 
 namespace Zenkins;
 
-class Talker_Gitlab_Users extends Talker_Gitlab
+class Talker_Gitlab_Users extends Talker
 {
 	protected static $model = 'Zenkins\Model_Gitlab_Users';
 }

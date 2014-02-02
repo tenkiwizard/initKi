@@ -1,6 +1,6 @@
 <?php
 /**
- * Gitlab talker
+ * Talker
  *
  * @package app
  * @subpackage zenkins
@@ -11,7 +11,7 @@
 
 namespace Zenkins;
 
-abstract class Talker_Gitlab
+abstract class Talker
 {
 	protected static $model = null;
 	protected static $things = array();

@@ -13,7 +13,7 @@ namespace Zenkins;
 
 class Model_Redmine_Changeset extends Model_Redmine
 {
-	const CONFIG_KEY_NAME = 'fetch_changesets_key';
+	const CONFIG_SECTION = 'redmine_fetch_chengesets';
 
 	protected static $_table_name = 'sys/fetch_changesets';
 }

@@ -51,6 +51,10 @@ class Http
 			static::$request->set_params($params);
 		}
 
+		\Log::debug(
+			'CURL_PARAMETERS: '.\Format::forge($params)->to_json(),
+			__METHOD__);
+
 		try
 		{
 			static::$response = $this->execute();
@@ -73,6 +77,7 @@ class Http
 
 		$response = static::$request->execute()->response();
 		\Log::debug(
+			'CURL_GETINFO: '.
 			\Format::forge(static::$request->response_info())->to_json(),
 			__METHOD__);
 		return $response;
