@@ -2,15 +2,15 @@
 <project name="initKi" basedir="." default="all">
 
   <!-- Don't change me. -->
-  <property name="phing_dir_name" value="phing" />
-  <property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
-  <property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
-  <property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
-  <property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
-  <property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
-  <property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
-  <property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
-  <property name="zip_dir_name" value="${phing_dir_name}/zip" />
+  <property name="phing_dir_name" value="build" />
+  <property name="phpcs_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phpmd_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phpcpd_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phpunit_dir_name" value="${phing_dir_name}/logs" />
+  <property name="pdepend_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phploc_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phpdoc_dir_name" value="${phing_dir_name}/logs" />
+  <property name="zip_dir_name" value="${phing_dir_name}/logs" />
 
   <!-- Change me. -->
   <property name="target_dir_name" value="fuel/app" />
