@@ -2,15 +2,15 @@
 <project name="initKi" basedir="." default="all">
 
   <!-- Don't change me. -->
-  <property name="phing_dir_name" value="build" />
-  <property name="phpcs_dir_name" value="${phing_dir_name}/logs" />
-  <property name="phpmd_dir_name" value="${phing_dir_name}/logs" />
-  <property name="phpcpd_dir_name" value="${phing_dir_name}/logs" />
-  <property name="phpunit_dir_name" value="${phing_dir_name}/logs" />
-  <property name="pdepend_dir_name" value="${phing_dir_name}/logs" />
-  <property name="phploc_dir_name" value="${phing_dir_name}/logs" />
-  <property name="phpdoc_dir_name" value="${phing_dir_name}/logs" />
-  <property name="zip_dir_name" value="${phing_dir_name}/logs" />
+  <property name="phing_dir_name" value="phing" />
+  <property name="phpcs_dir_name" value="${phing_dir_name}/phpcs" />
+  <property name="phpmd_dir_name" value="${phing_dir_name}/phpmd" />
+  <property name="phpcpd_dir_name" value="${phing_dir_name}/phpcpd" />
+  <property name="phpunit_dir_name" value="${phing_dir_name}/phpunit" />
+  <property name="pdepend_dir_name" value="${phing_dir_name}/pdepend" />
+  <property name="phploc_dir_name" value="${phing_dir_name}/phploc" />
+  <property name="phpdoc_dir_name" value="${phing_dir_name}/phpdoc" />
+  <property name="zip_dir_name" value="${phing_dir_name}/zip" />
 
   <!-- Change me. -->
   <property name="target_dir_name" value="fuel/app" />
@@ -69,7 +69,7 @@
 	<mkdir dir="${phpunit_dir_name}" />
 	<exec executable="phpunit" failonerror="true">
 	  <arg line ="
-		-c ${target_dir_name}/junit.xml
+		-c ${target_dir_name}/phpunit.xml
 		--group=App,Modules
 		--coverage-html ${phpunit_dir_name}/html
 		--coverage-clover ${phpunit_dir_name}/clover.xml
@@ -115,7 +115,7 @@
   <!-- not working ...
   <target name="zip">
 	<mkdir dir="${zip_dir_name}/tmp" />
-	<exec dir="." command="cp -r ${junit_dir_name}/html/ ${zip_dir_name}/tmp/coverage" />
+	<exec dir="." command="cp -r ${phpunit_dir_name}/html/ ${zip_dir_name}/tmp/coverage" />
 	<exec dir="./${zip_dir_name}/tmp/" command="zip -r ${zip_dir_name}/coverage.zip coverage" />
 	<exec dir="./${phing_dir_name}/" command="zip -r ${zip_dir_name}/phpdoc.zip phpdoc" />
   </target>
