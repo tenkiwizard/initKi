@@ -11,7 +11,7 @@ class Test_Geoip extends \TestCase
 	public function test_not_exists_host()
 	{
 		$this->setExpectedException('\RuntimeException');
-		Geoip::forge('a.b.c.d');
+		Geoip::forge('192.168.0.1');
 	}
 
 	public function test_get()

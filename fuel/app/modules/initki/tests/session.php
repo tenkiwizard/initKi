@@ -13,7 +13,7 @@ class Test_Session extends \TestCase
 	public function test_name()
 	{
 		$this->assertEquals(
-			'cookie_name_of_file',
+			'initkisessf',
 			Session::name()
 			);
 	}

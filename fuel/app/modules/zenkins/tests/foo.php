@@ -6,6 +6,9 @@ namespace Zenkins;
  *
  * @group Modules
  */
+
+/*
 class Test_Foo extends \TestCase
 {
 }
+*/
