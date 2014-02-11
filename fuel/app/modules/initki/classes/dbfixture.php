@@ -22,25 +22,20 @@ class DbFixture
 		$fixt_file = static::fixture($file, $namespace);
 		if ( ! file_exists($fixt_file))
 		{
-			exit('No such file: '.$fixt_file.PHP_EOL);
+			die('No such file: '.$fixt_file.PHP_EOL);
 		}
 
 		$data = file_get_contents($fixt_file);
 		$data = \Format::forge($data, static::$file_type)->to_array();
-		\DB::query("SET foreign_key_checks = 0")->execute();
+		\DB::query('SET foreign_key_checks = 0')->execute();
 		static::empty_table($table);
 		foreach ($data as $row)
 		{
-			list($insert_id, $rows_affected) =
-			   \DB::insert($table)->set($row)->execute();
+			\DB::insert($table)->set($row)->execute();
 		}
 
-		\DB::query("SET foreign_key_checks = 1")->execute();
-
-		$ret = \Log::info(
-			'Table Fixture '.$fixt_file.' loaded',
-			__METHOD__
-		);
+		\DB::query('SET foreign_key_checks = 1')->execute();
+		\Log::info('Table Fixture '.$fixt_file.' loaded', __METHOD__);
 		return $data;
 	}
 
@@ -64,7 +59,7 @@ class DbFixture
 		}
 		else
 		{
-			exit('No such table: '.$table.PHP_EOL);
+			die('No such table: '.$table.PHP_EOL);
 		}
 	}
 }

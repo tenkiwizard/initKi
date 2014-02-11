@@ -24,7 +24,7 @@ return array(
 			'default' => array(
 				'host' => '127.0.0.1',
 				'port' => 11211,
-				'weight' => 100
+				'weight' => 100,
 				),
 			),
 		),
