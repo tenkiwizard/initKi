@@ -16,8 +16,6 @@ class Model_Chatwork extends Model
 	const CONFIG_SECTION = 'chatwork';
 	const CONFIG_API_KEY = 'X-ChatWorkToken';
 
-	protected static $_table_name = 'rooms';
-
 	protected static function api($name, $method = 'get')
 	{
 		static::$additional_headers[static::CONFIG_API_KEY] =
