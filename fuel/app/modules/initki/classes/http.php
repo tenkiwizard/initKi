@@ -54,7 +54,7 @@ class Http
 		}
 
 		\Log::debug(
-			'CURL_PARAMETERS: '.\Format::forge($params)->to_json(),
+			'CURL_PARAMETERS => '.\Format::forge($params)->to_json(),
 			__METHOD__);
 
 		try
@@ -64,6 +64,9 @@ class Http
 		catch (\HttpException $e)
 		{
 			static::$response = $e->response();
+			\Log::debug(
+				'CURL_ERROR => '.\Format::forge(static::$response)->to_json(),
+				__METHOD__);
 		}
 
 		return $this;
@@ -86,11 +89,12 @@ class Http
 		foreach (static::$additional_headers as $header => $content)
 		{
 			static::$request->set_header($header, $content);
+			\Log::debug('CURL_HEADER => '.$header.': '.$content, __METHOD__);
 		}
 
 		$response = static::$request->execute()->response();
 		\Log::debug(
-			'CURL_GETINFO: '.
+			'CURL_GETINFO => '.
 			\Format::forge(static::$request->response_info())->to_json(),
 			__METHOD__);
 		return $response;
