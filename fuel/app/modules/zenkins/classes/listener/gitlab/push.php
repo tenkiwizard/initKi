@@ -1,6 +1,6 @@
 <?php
 /**
- * GitLab pushes listener
+ * GitLab push listener
  *
  * @package app
  * @subpackage zenkins

@@ -13,7 +13,7 @@ namespace Zenkins;
 
 abstract class Listener_Gitlab
 {
-	protected static $things = array();
+	protected $things = array();
 
 	public static function forge()
 	{
@@ -22,17 +22,22 @@ abstract class Listener_Gitlab
 
 	public function __construct()
 	{
-		static::$things = \Input::json();
+		$this->things = $this->things();
 		\Log::debug($this, __METHOD__);
+	}
+
+	protected function things()
+	{
+		return \Input::json();
 	}
 
 	public function __toString()
 	{
-		return \Format::forge(static::$things)->to_json();
+		return \Format::forge($this->things)->to_json();
 	}
 
 	public function listen($field = null)
 	{
-		return $field ? \Arr::get(static::$things, $field) : static::$things;
+		return $field ? \Arr::get($this->things, $field) : $this->things;
 	}
 }

@@ -13,36 +13,37 @@ namespace Zenkins;
 
 class Controller_Talksto_Chatwork_About_Gitlab extends Controller
 {
-	public function before()
-	{
-		parent::before();
-		\Lang::load('zenkins::vocabulary');
-	}
-
 	public function post_push($room_id = null, $api_key = null)
 	{
 		$room_id = $this->override('room_id', $room_id, 'required');
 		$api_key = $this->override('api_key', $api_key);
 
 		$things = Listener_Gitlab_Push::forge()->listen();
+		$body = __('gitlab.push', \Arr::flatten($things, '.'));
 
-		\Debug::dump($things);
-
-		$body = __('gitlab.push', array(
-			'user_name' => \Arr::get($things, 'user_name'),
-			'repository.name' => \Arr::get($things, 'repository.name'),
-			'repository.homepage' => \Arr::get($things, 'repository.homepage'),
-			'before' => \Arr::get($things, 'before'),
-			'after' => \Arr::get($things, 'after'),
-			));
-
-		\Debug::dump($body);exit;
+		\Log::debug('ZENKINS_SAYS => '.$body, __METHOD__);
 
 		Talker_Chatwork::forge($api_key)
 			->talk(array(
-				'root_id' => $room_id,
+				'room_id' => $room_id,
 				'body' => $body,
 				));
 	}
 
+	public function post_mergerequest($room_id = null, $api_key = null)
+	{
+		$room_id = $this->override('room_id', $room_id, 'required');
+		$api_key = $this->override('api_key', $api_key);
+
+		$things = Listener_Gitlab_Mergerequest::forge()->listen();
+		$body = __('gitlab.mergerequest', \Arr::flatten($things, '.'));
+
+		\Log::debug('ZENKINS_SAYS => '.$body, __METHOD__);
+
+		Talker_Chatwork::forge($api_key)
+			->talk(array(
+				'room_id' => $room_id,
+				'body' => $body,
+				));
+	}
 }
