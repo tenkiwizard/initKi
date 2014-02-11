@@ -21,7 +21,11 @@ return array(
 	'memcached' => array(
 		'cookie_name' => 'initkisessm',
 		'servers' => array(
-			'default' => array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100)
+			'default' => array(
+				'host' => '127.0.0.1',
+				'port' => 11211,
+				'weight' => 100
+				),
 			),
 		),
 );

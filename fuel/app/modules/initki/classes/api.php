@@ -44,6 +44,7 @@ class Api
 			$call = str_replace(
 				static::$replace_with_slashes, '/', $call);
 		}
+
 		$url .= $call;
 		return $url;
 	}

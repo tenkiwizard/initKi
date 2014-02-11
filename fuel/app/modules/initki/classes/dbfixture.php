@@ -34,6 +34,7 @@ class DbFixture
 			list($insert_id, $rows_affected) =
 			   \DB::insert($table)->set($row)->execute();
 		}
+
 		\DB::query("SET foreign_key_checks = 1")->execute();
 
 		$ret = \Log::info(
@@ -50,6 +51,7 @@ class DbFixture
 		{
 			$path .= 'modules/'.strtolower($namespace);
 		}
+
 		$path .= 'tests/fixture/';
 		return $path.$file.'_fixt'.'.'.static::$file_ext;
 	}

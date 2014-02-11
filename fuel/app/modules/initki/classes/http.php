@@ -80,7 +80,7 @@ class Http
 		// TODO 危険！設定ファイルなどによる切り替えが必要？
 		static::$request->set_options(array(
 			CURLOPT_SSL_VERIFYPEER => false,
-			CURLOPT_SSL_VERIFYHOST=> false,
+			CURLOPT_SSL_VERIFYHOST => false,
 			));
 
 		foreach (static::$additional_headers as $header => $content)

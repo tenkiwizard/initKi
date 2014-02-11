@@ -22,7 +22,7 @@ abstract class Model extends \Query\Model_Api
 		$api_key = \Config::get(
 			'resource.'.static::CONFIG_SECTION.'.'.static::CONFIG_API_KEY);
 		$api_key and static::$query[static::CONFIG_API_KEY] = $api_key;
-		if (! static::$base_url)
+		if ( ! static::$base_url)
 		{
 			static::$base_url = \Config::get(
 				'resource.'.static::CONFIG_SECTION.'.host');

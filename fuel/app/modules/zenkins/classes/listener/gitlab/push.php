@@ -11,6 +11,4 @@
 
 namespace Zenkins;
 
-class Listener_Gitlab_Push extends Listener_Gitlab
-{
-}
+class Listener_Gitlab_Push extends Listener_Gitlab {}
