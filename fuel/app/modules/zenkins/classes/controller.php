@@ -21,6 +21,7 @@ class Controller extends \Initki\Controller_Restful
 	{
 		parent::before();
 		$this->things();
+		\Lang::load('zenkins::vocabulary');
 	}
 
 	public function get_index()
