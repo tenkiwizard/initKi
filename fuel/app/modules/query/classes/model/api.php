@@ -17,6 +17,8 @@ abstract class Model_Api extends Model
 	protected static $base_url = '';
 	protected static $query = array();
 
+	protected static $additional_headers = array();
+
 	public static function forge()
 	{
 		return new static();
@@ -74,14 +76,12 @@ abstract class Model_Api extends Model
 		return $results;
 	}
 
-	/**
-	 * @todo 動作未検証につき、検証すべし！
-	 */
 	protected static function api($name, $method = 'get')
 	{
 		static $configs = null;
 		if (is_null($configs))
 		{
+			// TODO Verify behavior
 			\Config::load('Query::config', 'query');
 			$configs['api_cache'] = \Config::get('query.api_cache');
 			$configs['api_cache_lifetime'] = \Config::get('query.api_cache_lifetime');
@@ -96,24 +96,8 @@ abstract class Model_Api extends Model
 				$configs['api_cache_lifetime']);
 		}
 
-		return static::_api($name, $method);
-	}
-
-	public static function _api($name, $method = 'get')
-	{
-		static::log($method, $name, $params, $result);
 		\Initki\Api::method($method);
-		$result = \Initki\Api::$name(static::$query)->body;
-	}
-
-	/**
-	 * @todo 動作未検証につき、検証すべし！
-	 */
-	protected static function log($method, $name, array $params, $result)
-	{
-		if ( ! \Config::get('Qeury.api_debug')) return; // ここ多分取得できないのでは？
-		\Log::debug('API_REQUEST: '.strtoupper($method).' '.
-					\Initki\Api::base_url().$name.'?'.http_build_query($params));
-		\Log::debug('API_RESULT:'.$result);
+		\Initki\Api::additional_headers(static::$additional_headers);
+		return \Initki\Api::$name(static::$query)->body;
 	}
 }

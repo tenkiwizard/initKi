@@ -18,6 +18,8 @@ class Http
 	protected static $request = null;
 	protected static $response = null;
 
+	protected static $additional_headers = array();
+
 	public static function forge($url, $method = 'get', $auto_format = true)
 	{
 		return new static($url, $method, $auto_format);
@@ -51,6 +53,10 @@ class Http
 			static::$request->set_params($params);
 		}
 
+		\Log::debug(
+			'CURL_PARAMETERS => '.\Format::forge($params)->to_json(),
+			__METHOD__);
+
 		try
 		{
 			static::$response = $this->execute();
@@ -58,14 +64,40 @@ class Http
 		catch (\HttpException $e)
 		{
 			static::$response = $e->response();
+			\Log::debug(
+				'CURL_ERROR => '.\Format::forge(static::$response)->to_json(),
+				__METHOD__);
 		}
 
 		return $this;
 	}
 
+	public function additional_headers(array $additional_headers)
+	{
+		static::$additional_headers = $additional_headers;
+		return $this;
+	}
+
 	protected function execute()
 	{
-		return static::$request->execute()->response();
+		// TODO 危険！設定ファイルなどによる切り替えが必要？
+		static::$request->set_options(array(
+			CURLOPT_SSL_VERIFYPEER => false,
+			CURLOPT_SSL_VERIFYHOST => false,
+			));
+
+		foreach (static::$additional_headers as $header => $content)
+		{
+			static::$request->set_header($header, $content);
+			\Log::debug('CURL_HEADER => '.$header.': '.$content, __METHOD__);
+		}
+
+		$response = static::$request->execute()->response();
+		\Log::debug(
+			'CURL_GETINFO => '.
+			\Format::forge(static::$request->response_info())->to_json(),
+			__METHOD__);
+		return $response;
 	}
 
 	public static function response()

@@ -51,7 +51,8 @@ class Listview
 		return static::$model;
 	}
 
-	public function query(array $params = null){
+	public function query(array $params = null)
+	{
 		static $query = array();
 		if (is_null($params)) return $query;
 		$query = array_merge($query, $params);

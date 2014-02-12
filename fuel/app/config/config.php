@@ -43,6 +43,7 @@ return array(
 		'modules' => array(
 			'initki',
 			'query',
+			'zenkins',
 			),
 		),
 	'module_paths' => array(

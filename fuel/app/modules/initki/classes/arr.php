@@ -29,7 +29,8 @@ class Arr
 		$input = array_change_key_case($input, $case);
 		foreach ($input as $key => $array)
 		{
-			if(is_array($array)){
+			if (is_array($array))
+			{
 				$input[$key] = static::change_key_case($array, $case);
 			}
 		}

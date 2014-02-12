@@ -57,7 +57,7 @@ class Session
 		$my_url = \Uri::current();
 		if ($get = \Input::get())
 		{
-			$my_url .= '?'.http_build_query(\Input::get());
+			$my_url .= '?'.http_build_query($get);
 		}
 
 		\Session::set('urls.my_url', $my_url);

@@ -10,7 +10,7 @@ class Test_Api extends \TestCase
 {
 	public function test_base_url()
 	{
-		\Config::load('resource', true);
+		\Config::load('initki::resource', 'resource');
 		$expected = \Config::get('resource.api.base_url');
 		$actual = Api::base_url();
 		$this->assertSame($expected, $actual);
@@ -26,7 +26,12 @@ class Test_Api extends \TestCase
 	 */
 	public function test_url()
 	{
+		$expected = Api::base_url().'item_name_99';
+		$actual = Api::url('item_name_99');
+		$this->assertEquals($expected, $actual);
+
 		$expected = Api::base_url().'item/name/99';
+		Api::replace_with_slashes();
 		$actual = Api::url('item_name_99');
 		$this->assertEquals($expected, $actual);
 	}
