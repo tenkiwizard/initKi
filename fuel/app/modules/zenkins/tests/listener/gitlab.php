@@ -33,7 +33,7 @@ class Concrete_Listener_Gitlab_Nulldata extends Concrete_Listener_Gitlab
  * @group Modules
  */
 
-class Test_Foo extends \TestCase
+class Test_Listener_Gitlab extends \TestCase
 {
 	public function test_toString()
 	{

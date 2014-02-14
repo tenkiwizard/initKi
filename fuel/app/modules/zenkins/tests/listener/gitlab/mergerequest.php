@@ -33,7 +33,7 @@ class Listener_Gitlab_Mr_Nulldata extends Listener_Gitlab_Mr
  * @group Modules
  */
 
-class Test_Foo extends \TestCase
+class Test_Listener_Gitlab_Mergerequest extends \TestCase
 {
 	public function test_listen()
 	{
