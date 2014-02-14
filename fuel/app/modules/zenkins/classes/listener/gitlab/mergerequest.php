@@ -13,8 +13,9 @@ namespace Zenkins;
 
 class Listener_Gitlab_Mergerequest extends Listener_Gitlab
 {
-	protected function things()
+	public function __construct()
 	{
-		return \Input::json()['object_attributes'];
+		parent::__construct();
+		$this->things = \Arr::get($this->things, 'object_attributes');
 	}
 }

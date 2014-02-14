@@ -22,7 +22,7 @@ abstract class Listener_Gitlab
 
 	public function __construct()
 	{
-		$this->things = $this->things();
+		$this->things = (array) $this->things();
 		\Log::debug($this, __METHOD__);
 	}
 
