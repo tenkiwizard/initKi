@@ -16,3 +16,7 @@
 [submodule "fuel/packages/email"]
 	path = fuel/packages/email
 	url = git://github.com/fuel/email.git
+[submodule "fuel/app/modules/hituzi"]
+	path = fuel/app/modules/hituzi
+	url = git@repo.small-social-coding.org:initki/hituzi.git
+	branch = develop
