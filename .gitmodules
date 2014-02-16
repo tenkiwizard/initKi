@@ -20,3 +20,6 @@
 	path = fuel/app/modules/hituzi
 	url = git@repo.small-social-coding.org:initki/hituzi.git
 	branch = develop
+[submodule "fuel/app/modules/zenkins"]
+	path = fuel/app/modules/zenkins
+	url = git@repo.small-social-coding.org:initki/zenkins.git
