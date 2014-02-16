@@ -1,9 +1,4 @@
 <?php
-
-// Load in the Autoloader
-require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
-class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
-
 // Bootstrap the framework DO NOT edit this
 require COREPATH.'bootstrap.php';
 
@@ -11,9 +6,6 @@ require COREPATH.'bootstrap.php';
 Autoloader::add_classes(array(
 	// Add classes you want to override here
 	// Example: 'View' => APPPATH.'classes/view.php',
-	'RequestStatusException' => APPPATH.'modules/core/classes/requeststatusexception.php',
-	'Response' => APPPATH.'modules/core/classes/response.php',
-	'Database_Query_Builder_Where' => APPPATH.'modules/core/classes/database/query/builder/where.php',
 ));
 
 // Register the autoloader
