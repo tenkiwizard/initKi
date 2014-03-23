@@ -7,6 +7,7 @@ Autoloader::add_classes(array(
 	// Add classes you want to override here
 	// Example: 'View' => APPPATH.'classes/view.php',
 	'RequestStatusException' => APPPATH.'modules/core/classes/requeststatusexception.php',
+	'Request_Driver' => APPPATH.'modules/core/classes/request/driver.php',
 	'Response' => APPPATH.'modules/core/classes/response.php',
 	'Database_Query_Builder_Where' => APPPATH.'modules/core/classes/database/query/builder/where.php',
 ));
