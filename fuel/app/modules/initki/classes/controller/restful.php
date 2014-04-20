@@ -73,4 +73,12 @@ abstract class Controller_Restful extends \Controller_Rest
 	{
 		// implement on sub class if you need
 	}
+
+	/**
+	 * Called by extended HttpException::handel() when error occurs
+	 */
+	public function force_response($data = array(), $http_status = null)
+	{
+		return $this->response($data, $http_status);
+	}
 }

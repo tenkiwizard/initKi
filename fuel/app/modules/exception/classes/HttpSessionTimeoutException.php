@@ -11,10 +11,7 @@
  */
 class HttpSessionTimeoutException extends HttpException
 {
-	public function response()
-	{
-		$data['message'] = 'SessionTimeout';
-		$response = Response::forge(View::forge('errors/exception', $data), 400);
-		return $response;
-	}
+	protected static $data = array(
+		'message' => 'SessionTimeout',
+		);
 }

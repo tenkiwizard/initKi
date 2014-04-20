@@ -11,10 +11,8 @@
  */
 class HttpMethodNotAllowedException extends HttpException
 {
-	public function response()
-	{
-		$data['message'] = 'MethodNotAllowed';
-		$response = Response::forge(View::forge('errors/exception', $data), 405);
-		return $response;
-	}
+	protected static $http_status = 405;
+	protected static $data = array(
+		'message' => 'MethodNotAllowed',
+		);
 }

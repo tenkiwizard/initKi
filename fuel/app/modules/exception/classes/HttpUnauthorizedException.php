@@ -10,10 +10,8 @@
  */
 class HttpUnauthorizedException extends HttpException
 {
-	public function response()
-	{
-		$data['message'] = 'Unauthorized';
-		$response = Response::forge(View::forge('errors/exception', $data), 401);
-		return $response;
-	}
+	protected static $http_status = 401;
+	protected static $data = array(
+		'message' => 'Unauthorized',
+		);
 }

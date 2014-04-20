@@ -12,10 +12,7 @@
  */
 class HttpInvalidInputException extends HttpException
 {
-	public function response()
-	{
-		$data['message'] = 'Invalid Input';
-		$response = Response::forge(View::forge('errors/exception', $data), 400);
-		return $response;
-	}
+	protected static $data = array(
+		'message' => 'Invalid Input',
+		);
 }

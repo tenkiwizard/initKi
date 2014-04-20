@@ -11,10 +11,8 @@
  */
 class HttpForbiddenException extends HttpException
 {
-	public function response()
-	{
-		$data['message'] = 'Forbidden';
-		$response = Response::forge(View::forge('errors/exception', $data), 403);
-		return $response;
-	}
+	protected static $http_status = 403;
+	protected static $data = array(
+		'message' => 'Forbidden',
+		);
 }

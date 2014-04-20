@@ -20,7 +20,7 @@ class Test_HttpInvalidParameterException extends TestCase
 	{
 		$exception = new HttpInvalidParameterException();
 		$response = $exception->response();
-		$expected = 'Invalid Parameter ()';
+		$expected = 'Invalid Parameter';
 		$actual = $response->body->message;
 		$this->assertEquals($expected, $actual);
 	}
